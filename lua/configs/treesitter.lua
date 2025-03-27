@@ -15,6 +15,8 @@ local options = {
         "python",
         "rust",
         "vhdl",
+        "make",
+        "cmake",
     },
 
     highlight = {

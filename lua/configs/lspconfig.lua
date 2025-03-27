@@ -11,10 +11,14 @@ local lspconfig = require("lspconfig")
 -- list of all servers configured
 lspconfig.servers = {
     "lua_ls",
+    "clangd",
+    "pyright",
 }
 
 -- list of servers configured with default config
-local default_servers = {}
+local default_servers = {
+    "pyright",
+}
 
 for _, lsp in ipairs(default_servers) do
     lspconfig[lsp].setup({
@@ -24,6 +28,33 @@ for _, lsp in ipairs(default_servers) do
     })
 end
 
+-- rust lsp config
+lspconfig.rust_analyzer.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+    filetypes = { "rust" },
+    root_dir = lspconfig.util.root_pattern("Cargo.toml"),
+    settings = {
+        ["rust-analyzer"] = {
+            cargo = {
+                allFeatures = true,
+            },
+        },
+    },
+})
+
+-- c/c++ lsp config
+lspconfig.clangd.setup({
+    on_attach = function(client, bufnr)
+        client.server_capabilities.documentFormattingProvider = false
+        client.server_capabilities.documentRangeFormattingProvider = false
+        on_attach(client, bufnr)
+    end,
+    on_init = on_init,
+    capabilities = capabilities,
+})
+
+-- lua lsp config
 lspconfig.lua_ls.setup({
     on_attach = on_attach,
     capabilities = capabilities,
@@ -31,9 +62,7 @@ lspconfig.lua_ls.setup({
 
     settings = {
         Lua = {
-            diagnostics = {
-                -- globals = { "vim" },
-            },
+            diagnostics = {},
             workspace = {
                 library = {
                     vim.fn.expand("$VIMRUNTIME/lua"),
