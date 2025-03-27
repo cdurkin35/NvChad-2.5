@@ -1,0 +1,48 @@
+{
+  "File Header Doxygen": {
+    "prefix": "doxfile",
+    "body": [
+      "/**",
+      " * @file ${TM_FILENAME}",
+      " * @brief ${1:Short description of the file.}",
+      " *",
+      " * @author ${2:Your Name}",
+      " * @version ${3:1.0}",
+      " */"
+    ],
+    "description": "Doxygen comment for beginning of file"
+  },
+
+  "Struct Doxygen": {
+    "prefix": "doxstruct",
+    "body": [
+      "/**",
+      " * @brief ${1:Description of the struct.}",
+      " */"
+    ],
+    "description": "Doxygen comment for a struct"
+  },
+
+  "Class Doxygen": {
+    "prefix": "doxclass",
+    "body": [
+      "/**",
+      " * @brief ${1:Description of the class.}",
+      " */"
+    ],
+    "description": "Doxygen comment for a class"
+  },
+
+  "Function Doxygen": {
+    "prefix": "doxfunc",
+    "body": [
+      "/**",
+      " * @brief ${1:Short description of the function.}",
+      " *",
+      " * @param ${2:paramName} ${3:Description of the parameter.}",
+      " * @return ${4:Description of the return value.}",
+      " */"
+    ],
+    "description": "Doxygen comment for a function"
+  }
+}
