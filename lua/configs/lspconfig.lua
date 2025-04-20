@@ -13,11 +13,14 @@ lspconfig.servers = {
     "lua_ls",
     "clangd",
     "pyright",
+    "rust_analyzer",
+    "vhdl_ls",
 }
 
 -- list of servers configured with default config
 local default_servers = {
     "pyright",
+    "vhdl_ls",
 }
 
 for _, lsp in ipairs(default_servers) do
